@@ -9,7 +9,9 @@ module.exports = {
     collectCoverageFrom: [
         "src/**/*.{js,jsx,ts,tsx}", // Include files for coverage
         "!src/**/*.d.ts", // Exclude type definition files
-        "!src/**/index.{js,jsx,ts,tsx}" // Exclude entry files like index.js
+        "!src/**/index.{js,jsx,ts,tsx}" ,// Exclude entry files like index.js
+        "!src/meters/meters.js", //Exclude constants
+
       ],
     coverageDirectory: "coverage", // Directory to store coverage reports
     coverageReporters: ["json", "text", "lcov", "clover"], // Formats for coverage reports

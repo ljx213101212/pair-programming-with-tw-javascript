@@ -1,7 +1,8 @@
-const { meters } = require("../meters/meters");
+const { meters, meterPricePlanMap } = require("../meters/meters");
 const { pricePlanNames } = require("./price-plans");
 const { readings } = require("../readings/readings");
-const { compare, recommend } = require("./price-plans-controller");
+const { compare, recommend, total } = require("./price-plans-controller");
+const { totalCost } = require("../usage/usage");
 
 describe("price plans", () => {
     it("should compare usage cost for all price plans", () => {
@@ -97,5 +98,25 @@ describe("price plans", () => {
         });
 
         expect(recommendation).toEqual(expected);
+    });
+
+    it("should calculate the total price", () => {
+        const { getReadings, } = readings({
+            [meters.METER0]: [
+                { time: 1607686125, reading: 0.26785 },
+                { time: 1607599724, reading: 0.26785 },
+                { time: 1607513324, reading: 0.26785 },
+            ],
+        });
+
+        const rate = meterPricePlanMap[meters.METER0].rate;
+        const expectedTotalPrice = rate * getReadings(meters.METER0).reduce((acc, cur) => acc + cur.reading, 0)
+
+        const totalPrice = total(getReadings, {
+            params: {
+                smartMeterId: meters.METER0,
+            },
+        });
+        expect(totalPrice).toEqual(expectedTotalPrice);
     });
 });

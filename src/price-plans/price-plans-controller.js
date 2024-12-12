@@ -1,5 +1,6 @@
+const { meterPricePlanMap } = require("../meters/meters");
 const { pricePlans } = require("./price-plans");
-const { usageForAllPricePlans } = require("../usage/usage");
+const { usageForAllPricePlans, totalCost } = require("../usage/usage");
 
 const recommend = (getReadings, req) => {
     const meter = req.params.smartMeterId;
@@ -28,4 +29,11 @@ const compare = (getData, req) => {
     };
 };
 
-module.exports = { recommend, compare };
+const total = (getReadings, req) => {
+    const meter = req.params.smartMeterId;
+    const rate = meterPricePlanMap[meter].rate
+    const totalPrice = totalCost(getReadings(meter), rate);
+    return totalPrice;
+}
+
+module.exports = { recommend, compare, total };

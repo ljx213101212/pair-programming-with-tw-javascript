@@ -27,6 +27,11 @@ app.get("/price-plans/compare-all/:smartMeterId", (req, res) => {
     res.send(compare(getReadings, req));
 });
 
+//[TEST]: implement new API which calculates the total priceof a smart meters
+app.get("/readings/cost/:smartMeterId", (req, res) => {
+    
+});
+
 const port = process.env.PORT || 8080;
 app.listen(port);
 

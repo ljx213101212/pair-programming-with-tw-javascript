@@ -5,6 +5,12 @@ const average = (readings) => {
     );
 };
 
+const total = (readings) => {
+    return (
+        readings.reduce((prev, next) => prev + next.reading, 0)
+    );
+}
+
 const timeElapsedInHours = (readings) => {
     readings.sort((a, b) => a.time - b.time);
     const seconds = readings[readings.length - 1].time - readings[0].time;
@@ -16,9 +22,14 @@ const usage = (readings) => {
     return average(readings) / timeElapsedInHours(readings);
 };
 
+//[TODO]: consider rename avgUsagePerHour
 const usageCost = (readings, rate) => {
     return usage(readings) * rate;
 };
+
+const totalCost = (readings, rate) => {
+    return total(readings) * rate;
+}
 
 const usageForAllPricePlans = (pricePlans, readings) => {
     return Object.entries(pricePlans).map(([key, value]) => {
@@ -34,4 +45,5 @@ module.exports = {
     usage,
     usageCost,
     usageForAllPricePlans,
+    totalCost
 };

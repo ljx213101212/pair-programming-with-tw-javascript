@@ -5,6 +5,11 @@ const readings = (data) => ({
         data[meterId] = [...currentReadings, ...readings];
         return data[meterId];
     },
+    // calculateTotalCost: (meterId) => {
+    //     const readings = data[meterId] || [];
+    //     let ans = 0;
+    //     readings.reduce((acc, cur) => acc + cur.reading)
+    // }
 });
 
 /**
