@@ -7,6 +7,8 @@ const { recommend, compare } = require("./price-plans/price-plans-controller");
 const app = express();
 app.use(express.json());
 
+//[GOOD]: Dependency Injection (DI)
+//[TODO]: Consider to centralize all DI into a file.
 const { getReadings, setReadings } = readings(readingsData);
 
 app.get("/readings/read/:smartMeterId", (req, res) => {

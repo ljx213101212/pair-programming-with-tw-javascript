@@ -1,5 +1,6 @@
 const { pricePlans, pricePlanNames } = require("../price-plans/price-plans");
 
+//[TODO]: consider to add this into a config file.
 const meters = {
     METER0: "smart-meter-0",
     METER1: "smart-meter-1",

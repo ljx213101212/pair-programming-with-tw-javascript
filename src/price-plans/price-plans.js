@@ -1,3 +1,5 @@
+////[TODO]:
+// 1. consider to consolidate variable into database
 const pricePlanNames = {
     PRICEPLAN0: "price-plan-0",
     PRICEPLAN1: "price-plan-1",
