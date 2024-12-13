@@ -12,8 +12,19 @@ const timeElapsedInHours = (readings) => {
     return hours;
 };
 
+const readingsWithinTimeRange = (readings, startDate, endDate) => {
+    const timeStart = dayInSeconds(startDate);
+    const timeEnd = dayInSeconds(endDate);
+   
+    return readings.filter((reading) => timeStart <= reading.time && reading.time <= timeEnd);
+}
+
+const dayInSeconds = (isoDate) => new Date(isoDate).getTime() / 1000;
+
+const isValidISODate = (isoString) => !isNaN(Date.parse(isoString)) 
+
 const usage = (readings) => {
-    return average(readings) / timeElapsedInHours(readings);
+    return average(readings) * timeElapsedInHours(readings);
 };
 
 const usageCost = (readings, rate) => {
@@ -34,4 +45,6 @@ module.exports = {
     usage,
     usageCost,
     usageForAllPricePlans,
+    readingsWithinTimeRange,
+    isValidISODate
 };

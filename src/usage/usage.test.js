@@ -51,7 +51,7 @@ describe("usage", () => {
 
         const usageMeter0 = usage(getReadings(meters.METER0));
 
-        expect(usageMeter0).toBe(0.26785 / 48);
+        expect(usageMeter0).toBe(0.26785 * 48);
     });
 
     it("should get usage cost for all readings for a meter", () => {
@@ -66,7 +66,7 @@ describe("usage", () => {
         const rate = meterPricePlanMap[meters.METER2].rate;
         const usageCostForMeter = usageCost(getReadings(meters.METER2), rate);
 
-        expect(usageCostForMeter).toBe(0.26785 / 48 * 1);
+        expect(usageCostForMeter).toBe(0.26785 * 48 * 1);
     });
 
     it("should get usage cost for all readings for all price plans", () => {
@@ -80,13 +80,13 @@ describe("usage", () => {
 
         const expected = [
             {
-                [pricePlanNames.PRICEPLAN0]: 0.26785 / 48 * 10,
+                [pricePlanNames.PRICEPLAN0]: 0.26785 * 48 * 10,
             },
             {
-                [pricePlanNames.PRICEPLAN1]: 0.26785 / 48 * 2,
+                [pricePlanNames.PRICEPLAN1]: 0.26785 * 48 * 2,
             },
             {
-                [pricePlanNames.PRICEPLAN2]: 0.26785 / 48 * 1,
+                [pricePlanNames.PRICEPLAN2]: 0.26785 * 48 * 1,
             },
         ];
 
