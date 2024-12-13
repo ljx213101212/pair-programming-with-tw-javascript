@@ -7,4 +7,15 @@ const readings = (data) => ({
     },
 });
 
+/**
+getReadings:
+
+ [
+    {
+        time: 1607686125,
+        reading: 1.919047897962118
+    }
+]
+ */
+
 module.exports = { readings };
